@@ -48,8 +48,3 @@ yarn-debug.log*
 /config/locales
 /config/webpack
 .devcontainer
-.DS_Store
-*.jpg
-*.jpeg
-*.gif
-*.png
