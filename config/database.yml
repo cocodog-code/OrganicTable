@@ -14,3 +14,13 @@ development:
 test:
   <<: *default
   database: organictable_test
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: utf8
+  database: organic_table
+  username: naoya
+  password: ENV['POSTGRES_PASSWORD']
+  pool: 5
+  host: localhost
