@@ -7,7 +7,7 @@ set :repo_url, "git@github.com:cocodog-code/OrganicTable.git"
 
 set :branch, 'master'
 
-set :deploy_to, '/var/www/organictable'
+set :deploy_to, '/var/www/rails/OrganicTable'
 
 set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
 
