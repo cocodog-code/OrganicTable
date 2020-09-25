@@ -19,6 +19,13 @@ set :rbenv_ruby, '2.6.6'
 
 set :log_level, :debug
 
+set :pg_without_sudo, false
+set :pg_host, 'localhost'
+set :pg_database, 'organic_table'
+set :pg_username, 'naoya'
+set :pg_ask_for_password, true
+set :port, 22
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
