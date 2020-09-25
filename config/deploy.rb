@@ -7,7 +7,7 @@ set :repo_url, "git@github.com:cocodog-code/OrganicTable.git"
 
 set :branch, 'master'
 
-set :deploy_to, '/var/www/organictable'
+set :deploy_to, '/var/www/rails/OrganicTable'
 
 set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
 
@@ -18,6 +18,13 @@ set :keep_releases, 5
 set :rbenv_ruby, '2.6.6'
 
 set :log_level, :debug
+
+set :pg_without_sudo, false
+set :pg_host, 'localhost'
+set :pg_database, 'organic_table'
+set :pg_username, 'naoya'
+set :pg_ask_for_password, true
+set :port, 22
 
 namespace :deploy do
   desc 'Restart application'
