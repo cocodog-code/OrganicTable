@@ -1,63 +1,60 @@
-# config valid for current version and patch releases of Capistrano
-lock "~> 3.14.1"
+lock '3.4.0'
 
-set :application, "organictable"
-
-set :repo_url, "git@github.com:cocodog-code/OrganicTable.git"
-
-set :branch, 'master'
-
-set :deploy_to, '/var/www/rails/OrganicTable'
-
-set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
-
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
-
-set :keep_releases, 5
-
-set :rbenv_ruby, '2.6.6'
-
+set :application, 'organictable' # TODO
+set :repo_url, "git@github.com:cocodog-code/OrganicTable.git" # TODO
+set :deploy_to, '/var/www/organictable' # TODO
 set :log_level, :debug
 
-set :pg_without_sudo, false
-set :pg_host, 'localhost'
-set :pg_database, 'organic_table'
-set :pg_username, 'naoya'
-set :pg_ask_for_password, true
-set :port, 22
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
+
+# rbenv Ruby version
+set :rbenv_ruby, '2.6.6' # TODO
+
+# nokogiri はシステムライブラリを使うため bundle install にオプションを指定する
+set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
 
 namespace :deploy do
-  desc 'Restart application'
+  desc 'restart application'
   task :restart do
     invoke 'unicorn:restart'
   end
+end
+after 'deploy:publishing', 'deploy:restart'
 
-  desc 'Create database'
-  task :db_create do
-    on roles(:db) do |host|
-      with rails_env: fetch(:rails_env) do
-        within current_path do
-          execute :bundle, :exec, :rake, 'db:create'
-        end
+namespace :deploy do
+  desc "Copying database.yml"
+  task :config_database do
+    on roles(:all) do
+      within release_path do
+        db_config_file = "/var/www/organictable/shared/database.yml" #TODO
+        execute :cp, "#{db_config_file} ./config/database.yml"
       end
     end
   end
-
-  desc 'Run seed'
-  task :seed do
-    on roles(:app) do
-      with rails_env: fetch(:rails_env) do
-        within current_path do
-          execute :bundle, :exec, :rake, 'db:seed'
-        end
+  desc "Set Environment Values"
+  task :set_env_values do
+    on roles(:all) do
+      within release_path do
+        env_config = "/var/www/organictable/shared/.env"
+        execute :cp, "#{env_config} ./.env"
       end
     end
   end
-
-  after :publishing, :restart
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
+  desc "Set master.key"
+  task :config_database do
+    on roles(:all) do
+      within release_path do
+        db_config_file = "/var/www/organictable/shared/master.key" #TODO
+        execute :cp, "#{db_config_file} ./config/master.key"
+      end
     end
+  end
+  desc "Restarting application"
+  task :restart do
+    invoke "unicorn:restart"
   end
 end
+
+before "deploy:updated", "deploy:config_database"
+before "deploy:updated", "deploy:set_env_values"
+after "deploy:publishing", "deploy:restart"

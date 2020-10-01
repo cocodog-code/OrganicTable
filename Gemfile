@@ -35,10 +35,11 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.6.0'
   gem 'rubocop-airbnb'
-  gem 'capistrano'
-  gem 'capistrano-bundler'
+  gem 'capistrano', '3.4.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
