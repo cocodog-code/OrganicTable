@@ -44,7 +44,6 @@ yarn-debug.log*
 /lib/
 /config/initializes
 /config/locales
-/config/webpack
 .devcontainer
 .DS_Store
 /config/database.yml
