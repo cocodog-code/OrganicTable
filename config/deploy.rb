@@ -5,7 +5,7 @@ set :repo_url, "git@github.com:cocodog-code/OrganicTable.git" # TODO
 set :deploy_to, '/var/www/organictable' # TODO
 set :log_level, :debug
 
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
 
 # rbenv Ruby version
 set :rbenv_ruby, '2.6.6' # TODO

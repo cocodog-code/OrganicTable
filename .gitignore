@@ -43,7 +43,6 @@ yarn-debug.log*
 /log/
 /lib/
 /bin/
-/config/environments
 /config/initializes
 /config/locales
 /config/webpack
