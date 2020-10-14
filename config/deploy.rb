@@ -18,7 +18,7 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 
 set :linked_files, fetch(:linked_files, []).push('config/master.key')
 
-set :linked_files, fetch(:linked_files, []).push('config/credentials/production.yml.enc')
+# set :linked_files, fetch(:linked_files, []).push('config/credentials/production.yml.enc')
 
 set :linked_files, fetch(:linked_files, []).push('config/credentials/production.key')
 
