@@ -51,3 +51,5 @@ yarn-debug.log*
 *.jpeg
 *.gif
 *.png
+
+/config/credentials/production.key
