@@ -47,9 +47,6 @@ yarn-debug.log*
 .devcontainer
 .DS_Store
 /config/database.yml
-*.jpg
-*.jpeg
-*.gif
-*.png
+
 
 /config/credentials/production.key
