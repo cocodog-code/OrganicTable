@@ -13,6 +13,7 @@ development:
 test:
   <<: *default
   database: organictable_test
+  host: localhost
 
 production:
   <<: *default
