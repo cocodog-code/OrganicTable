@@ -42,6 +42,7 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
