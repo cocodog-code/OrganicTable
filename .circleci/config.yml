@@ -50,13 +50,13 @@ jobs:
 
       - run:
 +         name: install dependencies
-+         command: yarn
++         command: yarn install
 
       - save_cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - ./vendor/bundle
             - ./node_modules
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
       
       - run:
             name: DBの起動を待つ
