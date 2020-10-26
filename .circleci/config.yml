@@ -49,8 +49,8 @@ jobs:
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - run:
-+         name: install dependencies
-+         command: yarn install
+          name: install dependencies
+          command: yarn install
 
       - save_cache:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
@@ -59,8 +59,8 @@ jobs:
             - ./node_modules
       
       - run:
-            name: DBの起動を待つ
-            command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
+          name: DBの起動を待つ
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
           
       # Database setup
       - run: mv ./config/database.yml.ci ./config/database.yml
