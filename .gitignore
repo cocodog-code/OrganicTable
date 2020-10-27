@@ -46,7 +46,4 @@ yarn-debug.log*
 /config/locales
 .devcontainer
 .DS_Store
-/config/database.yml
-
-
 /config/credentials/production.key

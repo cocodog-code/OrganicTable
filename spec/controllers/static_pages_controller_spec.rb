@@ -16,5 +16,4 @@ RSpec.describe StaticPagesController, type: :controller do
       assert_select "title", "About | #{Constants::BASE_TITLE_NAME}"
     end
   end
-
 end

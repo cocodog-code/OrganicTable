@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password
+  pool: 5
+
+development:
+  <<: *default
+  database: organictable_development
+
+test:
+  <<: *default
+  database: organictable_test
+  host: localhost
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: utf8
+  database: organic_table
+  username: naoya
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  pool: 5432
+  host: localhost
