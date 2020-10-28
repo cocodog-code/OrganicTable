@@ -46,6 +46,7 @@ commands:
 
 jobs:
   test:
+    executor: default
     steps:
       - checkout
       - run:
@@ -85,6 +86,7 @@ jobs:
           command: bundle exec rubocop
 
   deploy:
+    executor: default
     steps:
       - setup
       - add_ssh_keys:
