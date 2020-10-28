@@ -26,7 +26,7 @@ commands:
             gem uninstall bundler
             rm /usr/local/bin/bundle
             rm /usr/local/bin/bundler
-            gem install bundler
+            gem install bundler -v 1.17.2
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
