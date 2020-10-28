@@ -1,32 +1,25 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
 version: 2.1
+
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/ruby:2.6.6-node-browsers
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: postgres
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:11.9
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: organictable_test
           POSTGRES_PASSWORD: password
+          
     working_directory: ~/organictable
 
+commands:
+  setup:
     steps:
       - checkout
-
-      # Setup bundler 2+
       - run:
           name: setup bundler
           command: |
@@ -35,37 +28,32 @@ jobs:
             rm /usr/local/bin/bundle
             rm /usr/local/bin/bundler
             gem install bundler
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
       - run:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-
       - run:
           name: install dependencies
           command: yarn install
-
       - save_cache:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - ./vendor/bundle
             - ./node_modules
-      
+
+jobs:
+  test:
+    steps:
+      - checkout
       - run:
           name: DBの起動を待つ
           command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
-          
       # Database setup
       - run: mv ./config/database.yml.ci ./config/database.yml
-
-      # Database setup
       - run: bundle exec rake db:migrate
       - run: bundle exec rake db:schema:load
       - run: bundle exec bin/webpack
@@ -96,3 +84,25 @@ jobs:
       - run:
           name: Rubocop
           command: bundle exec rubocop
+
+  deploy:
+    steps:
+      - setup
+      - add_ssh_keys:
+          fingerprints:
+            - "83:60:89:f9:44:af:d2:1f:f5:58:15:8a:43:b4:bb:74"
+      - deploy:
+         name: deploy by capistrano
+         command:
+           bundle exec cap production deploy
+
+workflows:
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
