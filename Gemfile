@@ -43,6 +43,7 @@ group :development, :test do
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
   gem 'rspec_junit_formatter'
+  gem "factory_bot_rails", "~> 4.10.0"
 end
 
 group :development do
