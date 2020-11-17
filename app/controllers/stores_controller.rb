@@ -10,7 +10,8 @@ class StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
     if @store.save
-
+      flash[:success] = "A new restaurant has been registered"
+      redirect_to @store
     else
       render 'new'
     end
