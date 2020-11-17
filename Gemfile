@@ -44,6 +44,9 @@ group :development, :test do
   gem 'bcrypt_pbkdf'
   gem 'rspec_junit_formatter'
   gem "factory_bot_rails", "~> 4.10.0"
+  gem 'webdrivers'
+  gem 'capybara', '~> 2.15.2'
+  gem 'database_cleaner'
 end
 
 group :development do
