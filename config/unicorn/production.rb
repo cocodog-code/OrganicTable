@@ -10,6 +10,8 @@ $listen = File.expand_path 'tmp/sockets/unicorn.sock', $app_dir
 $pid = File.expand_path 'tmp/pids/unicorn.pid', $app_dir
 # エラーログを吐き出すファイルのディレクトリ
 $std_log = File.expand_path 'log/unicorn.log', $app_dir
+# Gemfileの場所を指定
+ENV['BUNDLE_GEMFILE'] = $app_dir + "/Gemfile"
 
 # 上記で設定したものが適応されるよう定義
 worker_processes  $worker
