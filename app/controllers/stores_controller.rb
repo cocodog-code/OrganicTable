@@ -17,6 +17,20 @@ class StoresController < ApplicationController
     end
   end
 
+  def edit
+    @store = Store.find(params[:id])
+  end
+
+  def update
+    @store = Store.find(params[:id])
+    if @store.update(store_params)
+      flash[:success] = "レストランの情報を更新しました。"
+      redirect_to @store
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def store_params
