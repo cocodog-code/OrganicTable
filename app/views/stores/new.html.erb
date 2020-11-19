@@ -1,32 +1,9 @@
 <% provide(:title, 'レストラン新規登録') %>
+<% provide(:button_text, 'レストラン新規登録') %>
 <h1>レストラン新規登録</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @store, local: true) do |f| %>
-      <%= render 'shared/error_messages' %>
-      <%= f.label :name, "レストラン名" %>
-      <%= f.text_field :name %>
-
-      <%= f.label :genre, "ジャンル" %>
-      <%= f.text_field :genre %>
-
-      <%= f.label :phone, "電話番号" %>
-      <%= f.telephone_field :phone %>
-
-      <%= f.label :access, "アクセス" %>
-      <%= f.text_field :access %>
-
-      <%= f.label :hour, "営業時間" %>
-      <%= f.text_field :hour %>
-
-      <%= f.label :website, "お店URL" %>
-      <%= f.text_field :website %>
-
-      <%= f.label :address, "住所" %>
-      <%= f.text_field :address %>
-
-      <%= f.submit "新規登録", class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'form' %>
   </div>
 </div>

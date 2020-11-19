@@ -61,4 +61,20 @@ RSpec.describe "Store", type: :request do
       end
     end
   end
+
+  describe "GET #edit" do
+    let(:store) { create(:store) }
+
+    before do
+      get edit_store_url(store)
+    end
+
+    it "returns http success" do
+      expect(response).to have_http_status 200
+    end
+
+    it "has the correct title" do
+      expect(response.body).to include "レストラン情報更新 | Organic Table"
+    end
+  end
 end
