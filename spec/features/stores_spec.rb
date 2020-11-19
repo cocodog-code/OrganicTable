@@ -21,7 +21,7 @@ RSpec.feature "Stores", type: :feature do
       expect(page).to have_selector(".alert-success", text: "A new restaurant has been registered")
       # ストア情報更新
       store = Store.first
-      visit edit_store_path(store)
+      click_on 'ストア編集'
       fill_in 'store_name',    with: "new_name"
       fill_in 'store_genre',   with: "new_genre"
       fill_in 'store_phone',   with: "new_phone"
