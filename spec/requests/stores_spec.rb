@@ -15,6 +15,22 @@ RSpec.describe "Store", type: :request do
     end
   end
 
+  describe "GET #index" do
+    let(:store) { create(:store) }
+
+    before do
+      get stores_url
+    end
+
+    it "returns http success" do
+      expect(response).to have_http_status 200
+    end
+
+    it "has the correct title" do
+      expect(response.body).to include "Organic Table"
+    end
+  end
+
   describe "GET #show" do
     let(:store) { create(:store) }
 

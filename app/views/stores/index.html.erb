@@ -1,0 +1,10 @@
+<% provide(:title, '') %>
+<h1>オーガニックレストラン一覧</h1>
+
+<ul class="stores">
+  <% @stores.each do |store| %>
+    <li>
+      <%= link_to store.name, store %>
+    </li>
+  <% end %>
+</ul>
