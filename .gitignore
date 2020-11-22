@@ -47,3 +47,5 @@ yarn-debug.log*
 .devcontainer
 .DS_Store
 /config/credentials/production.key
+
+/config/credentials/development.key
