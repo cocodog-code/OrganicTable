@@ -101,8 +101,8 @@ RSpec.describe Store, type: :model do
   end
 
   context 'when invalid with a duplicate attribute' do
-    let!(:store1) { create(:store) } 
-    let(:store2) { build(:store) } 
+    let!(:store1) { create(:store) }
+    let(:store2) { build(:store) }
 
     it 'is invalid with a duplicate phone' do
       store2.valid?
