@@ -4,7 +4,7 @@ class StoresController < ApplicationController
   end
 
   def index
-    @stores = Store.all
+    @stores = Store.all.page(params[:page]).per(5)
   end
 
   def show

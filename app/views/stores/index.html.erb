@@ -1,10 +1,22 @@
 <% provide(:title, '') %>
 <h1>オーガニックレストラン一覧</h1>
 
-<ul class="stores">
-  <% @stores.each do |store| %>
-    <li>
-      <%= link_to store.name, store %>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <aside class="col-md-2">
+    神奈川県
+    東京都
+    愛知県
+  </aside>
+  <div class="col-md-10">
+    <ul class="stores">
+      <% @stores.each do |store| %>
+        <div class="col-md-12">
+          <%= render 'store_info',  store: store %>
+        </div>
+      <% end %>
+    </ul>
+    <%= paginate @stores %>
+  </div>
+</div>
+
+  

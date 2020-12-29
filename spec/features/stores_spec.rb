@@ -71,7 +71,7 @@ RSpec.feature "Stores feature", type: :feature do
         # エラーの検証
         expect(page).to have_selector("#error_explanation")
         expect(page).to have_selector(".alert-danger", text: "The form contains 1 error.")
-        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content("Nameを入力してください")
       end
     end
 
@@ -95,7 +95,7 @@ RSpec.feature "Stores feature", type: :feature do
         # エラーの検証
         expect(page).to have_selector("#error_explanation")
         expect(page).to have_selector(".alert-danger", text: "The form contains 1 error.")
-        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content("Nameを入力してください")
       end
     end
   end

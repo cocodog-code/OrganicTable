@@ -15,43 +15,43 @@ RSpec.describe Store, type: :model do
     it 'is invalid without a name' do
       store.name = nil
       store.valid?
-      expect(store.errors[:name]).to include("can't be blank")
+      expect(store.errors[:name]).to include("を入力してください")
     end
 
     it 'is invalid without a genre' do
       store.genre = nil
       store.valid?
-      expect(store.errors[:genre]).to include("can't be blank")
+      expect(store.errors[:genre]).to include("を入力してください")
     end
 
     it 'is invalid without a phone' do
       store.phone = nil
       store.valid?
-      expect(store.errors[:phone]).to include("can't be blank")
+      expect(store.errors[:phone]).to include("を入力してください")
     end
 
     it 'is invalid without an access' do
       store.access = nil
       store.valid?
-      expect(store.errors[:access]).to include("can't be blank")
+      expect(store.errors[:access]).to include("を入力してください")
     end
 
     it 'is invalid without an hour' do
       store.hour = nil
       store.valid?
-      expect(store.errors[:hour]).to include("can't be blank")
+      expect(store.errors[:hour]).to include("を入力してください")
     end
 
     it 'is invalid without a website' do
       store.website = nil
       store.valid?
-      expect(store.errors[:website]).to include("can't be blank")
+      expect(store.errors[:website]).to include("を入力してください")
     end
 
     it 'is invalid without an address' do
       store.address = nil
       store.valid?
-      expect(store.errors[:address]).to include("can't be blank")
+      expect(store.errors[:address]).to include("を入力してください")
     end
 
     it 'is invalid without an image' do
@@ -101,12 +101,12 @@ RSpec.describe Store, type: :model do
   end
 
   context 'when invalid with a duplicate attribute' do
-    let!(:store1) { create(:store) }
-    let(:store2) { build(:store) }
+    let!(:store1) { create(:store, phone: "123-456") }
+    let(:store2) { build(:store, phone: "123-456") }
 
     it 'is invalid with a duplicate phone' do
       store2.valid?
-      expect(store2.errors[:phone]).to include("has already been taken")
+      expect(store2.errors[:phone]).to include("はすでに存在します")
     end
   end
 end
