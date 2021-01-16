@@ -18,6 +18,3 @@ AllCops:
     - 'vendor/**/*'
     - 'path/ruby'
     - 'node_modules/**/*'
-
-Style/MixinUsage:
-  Enabled: false
