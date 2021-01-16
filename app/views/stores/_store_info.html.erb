@@ -1,0 +1,13 @@
+<li id="store-<%= store.id %>">
+  <div class="store_body">
+    <div class="store_photo">
+      <%= image_tag store.image.variant(resize_to_fill: [200,200]) %>
+    </div>
+
+    <div class="store_description">
+      <div class="store_name">
+        <%= link_to "#{store.name}", store_path(store) %> <span><%= store.genre %></span>
+      </div>
+    </div>
+  </div>
+</li>

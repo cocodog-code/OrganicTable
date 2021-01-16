@@ -37,6 +37,10 @@ textarea {
   max-width: 1300px;
   }
 
+ul {
+  list-style: none;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -142,6 +146,11 @@ input {
   height: auto !important;
 }
 
+#store_image {
+  border: 0;
+  width: auto;
+}
+
 #error_explanation {
   color: red;
   ul {
@@ -155,4 +164,37 @@ input {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+/* top page */
+.stores li {
+  padding: 10px 0;
+  border-top: 1px solid #e8e8e8;
+}
+.store_body {
+  display: flex;
+}
+
+.store_name {
+  margin: 40px 0 0 40px;
+  font-size: 24px;
+}
+
+.store_name span {
+  font-size: 10px;
+  margin-left: 30px;
+}
+
+.pagination>li>a {          
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {     
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {        
+  border-radius: 15px;
 }

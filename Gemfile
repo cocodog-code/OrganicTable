@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '3.4.1'
 gem 'dotenv-rails'
+gem 'image_processing', '1.9.3'
+gem "aws-sdk-s3", require: false
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,6 +50,7 @@ group :development, :test do
   gem 'webdrivers'
   gem 'capybara', '~> 2.15.2'
   gem 'database_cleaner'
+  gem 'faker', '2.1.2'
 end
 
 group :development do

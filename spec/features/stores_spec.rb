@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Stores", type: :feature do
+RSpec.feature "Stores feature", type: :feature do
   context "with valud values" do
     let(:store) { FactoryBot.build(:store) }
 
@@ -14,6 +14,7 @@ RSpec.feature "Stores", type: :feature do
       fill_in 'store_hour',    with: store.hour
       fill_in 'store_website', with: store.website
       fill_in 'store_address', with: store.address
+      attach_file("store[image]", "spec/fixtures/files/test_image.jpg")
       click_on '新規登録'
       # ページタイトルの確認
       expect(page).to have_title "#{store.name} | Organic Table"
@@ -29,6 +30,7 @@ RSpec.feature "Stores", type: :feature do
       fill_in 'store_hour',    with: "new_hour"
       fill_in 'store_website', with: "new_website"
       fill_in 'store_address', with: "new_address"
+      attach_file("store[image]", "spec/fixtures/files/new_image.jpg")
       click_on '変更を保存'
       # 変更が成功しているか確認
       store.reload
@@ -39,10 +41,12 @@ RSpec.feature "Stores", type: :feature do
       expect(store.hour).to eq "new_hour"
       expect(store.website).to eq "new_website"
       expect(store.address).to eq "new_address"
+      # 画像が変更されているか確認
+      expect(page).to have_selector "img[src$='new_image.jpg']"
       # ページタイトルの確認
       expect(page).to have_title "new_name | Organic Table"
       # フラッシュの確認
-      expect(page).to have_selector ".alert-success", text: ""
+      expect(page).to have_selector ".alert-success", text: "レストランの情報を更新しました。"
     end
   end
 
@@ -59,6 +63,7 @@ RSpec.feature "Stores", type: :feature do
         fill_in 'store_hour',    with: store.hour
         fill_in 'store_website', with: store.website
         fill_in 'store_address', with: store.address
+        attach_file("store[image]", "spec/fixtures/files/test_image.jpg")
         click_on '新規登録'
         # ページタイトルの確認
         expect(page).to have_title "レストラン新規登録 | Organic Table"
@@ -66,11 +71,11 @@ RSpec.feature "Stores", type: :feature do
         # エラーの検証
         expect(page).to have_selector("#error_explanation")
         expect(page).to have_selector(".alert-danger", text: "The form contains 1 error.")
-        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content("Nameを入力してください")
       end
     end
 
-    context "#edit" do
+    context "#update" do
       let(:store) { FactoryBot.create(:store) }
 
       scenario "invalid store edit" do
@@ -82,6 +87,7 @@ RSpec.feature "Stores", type: :feature do
         fill_in 'store_hour',    with: store.hour
         fill_in 'store_website', with: store.website
         fill_in 'store_address', with: store.address
+        attach_file("store[image]", "spec/fixtures/files/new_image.jpg")
         click_on '変更を保存'
         # ページタイトルの確認
         expect(page).to have_title "レストラン情報更新 | Organic Table"
@@ -89,7 +95,7 @@ RSpec.feature "Stores", type: :feature do
         # エラーの検証
         expect(page).to have_selector("#error_explanation")
         expect(page).to have_selector(".alert-danger", text: "The form contains 1 error.")
-        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content("Nameを入力してください")
       end
     end
   end
