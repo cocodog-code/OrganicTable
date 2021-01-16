@@ -43,7 +43,8 @@ yarn-debug.log*
 /log/
 /lib/
 /config/initializes
-/config/locales
 .devcontainer
 .DS_Store
 /config/credentials/production.key
+
+/config/credentials/development.key

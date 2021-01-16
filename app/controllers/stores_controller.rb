@@ -3,6 +3,10 @@ class StoresController < ApplicationController
     @store = Store.new
   end
 
+  def index
+    @stores = Store.all.page(params[:page]).per(5)
+  end
+
   def show
     @store = Store.find(params[:id])
   end
@@ -35,6 +39,6 @@ class StoresController < ApplicationController
 
   def store_params
     params.require(:store).permit(:name, :genre, :phone, :access,
-                                  :hour, :website, :address)
+                                  :hour, :website, :address, :image)
   end
 end
