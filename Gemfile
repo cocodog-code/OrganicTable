@@ -32,6 +32,7 @@ gem 'dotenv-rails'
 gem 'image_processing', '1.9.3'
 gem "aws-sdk-s3", require: false
 gem 'kaminari'
+gem 'faker', '2.1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,7 +51,6 @@ group :development, :test do
   gem 'webdrivers'
   gem 'capybara', '~> 2.15.2'
   gem 'database_cleaner'
-  gem 'faker', '2.1.2'
 end
 
 group :development do
