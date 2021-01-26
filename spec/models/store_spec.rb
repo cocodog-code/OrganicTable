@@ -54,10 +54,16 @@ RSpec.describe Store, type: :model do
       expect(store.errors[:address]).to include("を入力してください")
     end
 
+    it 'is invalid without a description' do
+      store.description = nil
+      store.valid?
+      expect(store.errors[:description]).to include("を入力してください")
+    end
+
     it 'is invalid without an image' do
       store.image = nil
       store.valid?
-      expect(store.errors[:image]).to include("can't be blank")
+      expect(store.errors[:image]).to include("を添付してください")
     end
   end
 
@@ -96,6 +102,11 @@ RSpec.describe Store, type: :model do
 
     it 'is invalid with a too long address' do
       store.address = "a" * 51
+      expect(store).to be_invalid
+    end
+
+    it 'is invalid with a too long description' do
+      store.description = "a" * 101
       expect(store).to be_invalid
     end
   end

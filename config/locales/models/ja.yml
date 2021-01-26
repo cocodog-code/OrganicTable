@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    models:
+      store: ストア
+    attributes:
+      store:
+        name: 名前
+        genre: ジャンル
+        phone: 電話番号
+        access: アクセス
+        hour: 営業時間
+        website: ウェブサイト
+        address: 住所
+        description: レストラン概要
+        image: 店画像
