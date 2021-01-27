@@ -39,6 +39,6 @@ class StoresController < ApplicationController
 
   def store_params
     params.require(:store).permit(:name, :genre, :phone, :access,
-                                  :hour, :website, :address, :image)
+                                  :hour, :website, :address, :description, :image)
   end
 end

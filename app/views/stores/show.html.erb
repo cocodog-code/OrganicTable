@@ -1,4 +1,5 @@
 <% provide(:title, @store.name) %>
 <%= @store.name %>, <%= @store.address %>
 <%= image_tag url_for(@store.image) if @store.image.attached? %>
+<%= @store.description %>
 <%= link_to "ストア編集", edit_store_path(params[:id]) %>

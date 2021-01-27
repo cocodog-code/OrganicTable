@@ -14,6 +14,7 @@ RSpec.feature "Stores feature", type: :feature do
       fill_in 'store_hour',    with: store.hour
       fill_in 'store_website', with: store.website
       fill_in 'store_address', with: store.address
+      fill_in 'store_description', with: store.description
       attach_file("store[image]", "spec/fixtures/files/test_image.jpg")
       click_on '新規登録'
       # ページタイトルの確認
@@ -30,6 +31,7 @@ RSpec.feature "Stores feature", type: :feature do
       fill_in 'store_hour',    with: "new_hour"
       fill_in 'store_website', with: "new_website"
       fill_in 'store_address', with: "new_address"
+      fill_in 'store_description', with: "new_description"
       attach_file("store[image]", "spec/fixtures/files/new_image.jpg")
       click_on '変更を保存'
       # 変更が成功しているか確認
@@ -41,6 +43,7 @@ RSpec.feature "Stores feature", type: :feature do
       expect(store.hour).to eq "new_hour"
       expect(store.website).to eq "new_website"
       expect(store.address).to eq "new_address"
+      expect(store.description).to eq "new_description"
       # 画像が変更されているか確認
       expect(page).to have_selector "img[src$='new_image.jpg']"
       # ページタイトルの確認
@@ -63,6 +66,7 @@ RSpec.feature "Stores feature", type: :feature do
         fill_in 'store_hour',    with: store.hour
         fill_in 'store_website', with: store.website
         fill_in 'store_address', with: store.address
+        fill_in 'store_description', with: store.description
         attach_file("store[image]", "spec/fixtures/files/test_image.jpg")
         click_on '新規登録'
         # ページタイトルの確認
@@ -70,8 +74,8 @@ RSpec.feature "Stores feature", type: :feature do
 
         # エラーの検証
         expect(page).to have_selector("#error_explanation")
-        expect(page).to have_selector(".alert-danger", text: "The form contains 1 error.")
-        expect(page).to have_content("Nameを入力してください")
+        expect(page).to have_selector(".alert-danger", text: "1つエラーがあります。")
+        expect(page).to have_content("名前を入力してください")
       end
     end
 
@@ -87,6 +91,7 @@ RSpec.feature "Stores feature", type: :feature do
         fill_in 'store_hour',    with: store.hour
         fill_in 'store_website', with: store.website
         fill_in 'store_address', with: store.address
+        fill_in 'store_description', with: store.description
         attach_file("store[image]", "spec/fixtures/files/new_image.jpg")
         click_on '変更を保存'
         # ページタイトルの確認
@@ -94,8 +99,8 @@ RSpec.feature "Stores feature", type: :feature do
 
         # エラーの検証
         expect(page).to have_selector("#error_explanation")
-        expect(page).to have_selector(".alert-danger", text: "The form contains 1 error.")
-        expect(page).to have_content("Nameを入力してください")
+        expect(page).to have_selector(".alert-danger", text: "1つエラーがあります。")
+        expect(page).to have_content("名前を入力してください")
       end
     end
   end

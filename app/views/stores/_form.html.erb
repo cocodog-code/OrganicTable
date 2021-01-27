@@ -21,8 +21,11 @@
   <%= f.label :address, "住所" %>
   <%= f.text_field :address %>
 
+  <%= f.label :description, "レストラン概要" %>
+  <%= f.text_field :description %>
+
   <%= f.label :image, "レストラン画像" %>
-  <%= f.file_field :image%>
+  <%= f.file_field :image %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
